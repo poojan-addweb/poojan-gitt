@@ -1,0 +1,17 @@
+---
+- name: Install Google Chrome on Ubuntu
+  hosts: addweb@192.168.1.2
+  become: yes  # Run tasks with elevated privileges (sudo)
+
+  tasks:
+    - name: Add Google Chrome repository
+      apt_repository:
+        repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+        state: present
+        update_cache: yes
+
+    - name: Install Google Chrome
+      apt:
+        name: google-chrome-stable
+        state: present
+
